@@ -32,6 +32,8 @@ public class TicketCheckoutAct extends AppCompatActivity {
     Integer valuehargatiket = 0;
     ImageView notice_uang;
 
+    LinearLayout btn_back;
+
     Integer sisa_balance = 0;
 
 
@@ -210,6 +212,14 @@ public class TicketCheckoutAct extends AppCompatActivity {
                     }
                 });
 
+            }
+        });
+
+        btn_back = findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
     }

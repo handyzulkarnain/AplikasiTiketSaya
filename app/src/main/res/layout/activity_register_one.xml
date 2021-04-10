@@ -165,20 +165,28 @@
     </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btn_continue"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_button_blue_primary"
-        android:fontFamily="@font/mmedium"
-        android:text="Continue"
-        android:textColor="@color/white_font"
-        android:textSize="22sp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
+        <Button
+            android:id="@+id/btn_continue"
+            android:background="@drawable/bg_button_blue_primary"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/mmedium"
+            android:text="Continue"
+            android:textColor="@color/white_font"
+            android:textSize="22sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/btn_back"
@@ -189,7 +197,7 @@
         android:background="@drawable/bg_layout_white"
         android:gravity="center"
         android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/btn_continue"
+        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <ImageView

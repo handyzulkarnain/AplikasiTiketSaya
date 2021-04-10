@@ -81,8 +81,7 @@ public class TicketDetailAct extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent backtoprev = new Intent(TicketDetailAct.this, HomeAct.class);
-                startActivity(backtoprev);
+                onBackPressed();
             }
         });
 

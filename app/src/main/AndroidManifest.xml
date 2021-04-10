@@ -17,8 +17,8 @@
         <activity android:name=".HomeAct" />
         <activity android:name=".MyProfileAct" />
         <activity android:name=".SuccessRegisterAct" />
-        <activity android:name=".RegisterTwoAct" />
-        <activity android:name=".RegisterOneAct" />
+        <activity android:name=".RegisterTwoAct"/>
+        <activity android:name=".RegisterOneAct"/>
         <activity android:name=".SignInActivity" />
         <activity android:name=".GetStartedActivity" />
         <activity android:name=".SplashActivity">
@@ -28,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>

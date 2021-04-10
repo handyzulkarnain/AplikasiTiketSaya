@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="btn_blue_primary" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">55dp</item>
+        <item name="backgroundTint">@drawable/bg_button_blue_primary</item>
+        <item name="fontFamily">@font/mmedium</item>
+        <item name="android:textColor">@color/white_font</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 </resources>

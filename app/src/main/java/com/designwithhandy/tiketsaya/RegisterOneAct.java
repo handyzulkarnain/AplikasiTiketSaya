@@ -23,7 +23,7 @@ public class RegisterOneAct extends AppCompatActivity {
     Button btn_continue;
     LinearLayout btn_back;
     EditText username, password, email_address;
-    DatabaseReference reference;
+    DatabaseReference reference, reference_username;
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
@@ -50,25 +50,53 @@ public class RegisterOneAct extends AppCompatActivity {
                 btn_continue.setEnabled(false);
                 btn_continue.setText("loading ...");
 
-
-                //menyimpan data pada local storage
-                SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString(username_key, username.getText().toString());
-                editor.apply();
-
-
-                //simpan di database
-                reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
-                reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                //ambil username yang uda ada di database firebase
+                reference_username = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                reference_username.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        snapshot.getRef().child("username").setValue(username.getText().toString());
-                        snapshot.getRef().child("password").setValue(password.getText().toString());
-                        snapshot.getRef().child("email_address").setValue(email_address.getText().toString());
-                        snapshot.getRef().child("user_balance").setValue(800);
+                        //jika username uda ada
+                        if (snapshot.exists()) {
+                            Toast.makeText(getApplicationContext(), "Username sudah tersedia!", Toast.LENGTH_SHORT).show();
+                            //ubah ke active
+                            btn_continue.setEnabled(true);
+                            btn_continue.setText("CONTINUE");
+
+                        }
+                        else {
+                            //menyimpan data pada local storage
+                            SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString(username_key, username.getText().toString());
+                            editor.apply();
 
 
+                            //simpan di database
+                            reference = FirebaseDatabase.getInstance().getReference().child("Users").child(username.getText().toString());
+                            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    snapshot.getRef().child("username").setValue(username.getText().toString());
+                                    snapshot.getRef().child("password").setValue(password.getText().toString());
+                                    snapshot.getRef().child("email_address").setValue(email_address.getText().toString());
+                                    snapshot.getRef().child("user_balance").setValue(800);
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+
+
+                            //berpindah activity
+                            Intent gotonextregister = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
+                            startActivity(gotonextregister);
+
+                        }
                     }
 
                     @Override
@@ -79,9 +107,7 @@ public class RegisterOneAct extends AppCompatActivity {
 
 
 
-                //berpindah activity
-                Intent gotonextregister = new Intent(RegisterOneAct.this, RegisterTwoAct.class);
-                startActivity(gotonextregister);
+
             }
         });
 
@@ -89,8 +115,7 @@ public class RegisterOneAct extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent gotoSignInAct = new Intent(RegisterOneAct.this, SignInActivity.class);
-                startActivity(gotoSignInAct);
+                onBackPressed();
             }
         });
 
