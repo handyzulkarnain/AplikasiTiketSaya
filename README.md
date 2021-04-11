@@ -2,8 +2,8 @@
 Android based applicaton to book online tickets.
 
 ## What's the Magic Inside? 
-Created with Android Studio, using Java, XML.
-UI modified using Adobe XD.
+Created with Android Studio, using Java, XML.\
+UI modified using Adobe XD.\
 Storage and database provided by Google Firebase.
 
 ## Sneak Peek
