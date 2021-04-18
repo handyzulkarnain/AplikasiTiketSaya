@@ -1,5 +1,5 @@
 # AplikasiTiketSaya
-Android based applicaton to book online tickets.
+Android based application to book online tickets.
 
 ## What's the Magic Inside? 
 Created with Android Studio, using Java, XML.\
